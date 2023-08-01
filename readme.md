@@ -16,13 +16,13 @@ python结合feedparser模块编写的终端私人RSS订阅程序
 Clone 这个 project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/bosichong/python_rss_subscription
 ```
 
 前往项目目录
 
 ```bash
-  cd my-project
+  cd python_rss_subscription
 ```
 
 安装依赖
@@ -46,7 +46,7 @@ Clone 这个 project
 
 ## 作者
 
-- [@octokatherine](https://www.github.com/octokatherine)
+- [@octokatherine](https://github.com/bosichong/python_rss_subscription)
 
 - [@我的博客](https://suiyan.cc)
 
