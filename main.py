@@ -3,6 +3,7 @@ from concurrent.futures import ThreadPoolExecutor
 import feedparser
 import webbrowser
 import os
+import threading
 from datetime import datetime, timedelta
 
 # 定义你喜欢的博客的RSS链接地址，放入一个数组中
@@ -21,19 +22,39 @@ rss_feeds = [
 def fetch_articles_from_feed(feed_url, one_week_ago):
     articles = []
     print("开始解析:"+feed_url)
-    feed = feedparser.parse(feed_url)
-    if 'entries' in feed:
-        for entry in feed.entries:
-            published_time = datetime(*entry.published_parsed[:6])
-            if published_time >= one_week_ago:
-                article = {
-                    'title': entry.get('title', ''),
-                    'link': entry.get('link', ''),
-                    'published': entry.get('published', ''),
-                    # 可以根据需要提取更多信息，如作者、摘要等
-                }
-                articles.append(article)
-    print("解析完成！" + feed_url)
+    
+    def parse_feed():
+        nonlocal articles
+        try:
+            feed = feedparser.parse(feed_url)
+            if 'entries' in feed:
+                for entry in feed.entries:
+                    published_time = datetime(*entry.published_parsed[:6])
+                    if published_time >= one_week_ago:
+                        article = {
+                            'title': entry.get('title', ''),
+                            'link': entry.get('link', ''),
+                            'published': entry.get('published', ''),
+                            # 可以根据需要提取更多信息，如作者、摘要等
+                        }
+                        articles.append(article)
+            print("解析完成！" + feed_url)
+        except Exception as e:
+            print(f"解析{feed_url}出错：{str(e)}")
+    
+    # 创建一个线程来执行解析任务
+    thread = threading.Thread(target=parse_feed)
+    thread.daemon = True
+    thread.start()
+    
+    # 等待30秒
+    thread.join(30)
+    
+    # 如果线程还在运行，说明超时了
+    if thread.is_alive():
+        print(f"解析{feed_url}超时")
+        return articles
+        
     return articles
 
 
