@@ -28,11 +28,10 @@ Clone 这个 project
 安装依赖
 
 ```bash
-  pip install feedparser
-  pip install webbrowser
+  pip install -r requirements.txt
 ```
 
-启动服务器
+启动程序
 
 ```bash
   python main.py
@@ -41,7 +40,11 @@ Clone 这个 project
 
 ## 使用方法
 
-编辑main.py中的rss订阅数组，修改成自己喜欢的RSS源即可。
+1. 编辑config.json文件中的rss_feeds数组，修改成自己喜欢的RSS源
+2. 可以调整其他配置参数：
+   - weeks_limit: 限制获取多少周内的文章（默认为1周）
+   - max_workers: 最大并发线程数（默认为5）
+   - request_timeout: 网络请求超时时间（秒，默认为30）
 
 
 ## 作者

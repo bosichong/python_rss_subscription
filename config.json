@@ -1,0 +1,15 @@
+{
+  "rss_feeds": [
+    "https://hutusi.com/feed.xml",
+    "https://scarsu.com/rss",
+    "https://www.demochen.com/atom.xml",
+    "https://onojyun.com/feed/",
+    "https://hux6.com/feed/",
+    "https://atjason.com/atom.xml",
+    "https://www.ruanyifeng.com/blog/atom.xml",
+    "https://www.tjsky.net/feed"
+  ],
+  "weeks_limit": 1,
+  "max_workers": 5,
+  "request_timeout": 30
+}
