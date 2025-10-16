@@ -6,6 +6,7 @@ import requests
 import logging
 import json
 import os
+from urllib.parse import urlparse
 
 # 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -21,6 +22,7 @@ DEFAULT_CONFIG = {
         'https://hux6.com/feed/',
         'https://atjason.com/atom.xml',
         'https://www.ruanyifeng.com/blog/atom.xml',
+        
     ],
     'weeks_limit': 1,
     'max_workers': 5,
@@ -143,9 +145,40 @@ def display_articles(articles):
     for index, article in enumerate(articles, start=1):
         # 截取过长的标题
         title = article['title']
+        url = get_domain(article['link'])
         if len(title) > 80:
             title = title[:77] + "..."
-        print(f"{index:2d}. {title}")
+        print(f"{index:2d}. {title} {url}")
+
+
+def get_domain(url: str) -> str:
+    """
+    从给定的网址中提取域名。
+
+    Args:
+        url (str): 完整的网址 (e.g., 'https://www.example.com/page')
+
+    Returns:
+        str: 提取出的域名 (e.g., 'www.example.com')
+        
+    Raises:
+        ValueError: 如果输入的 URL 格式无效。
+    """
+    # 如果 URL 没有协议前缀，则添加一个默认的协议前缀
+    # urlparse 需要协议才能正确解析
+    if not url.startswith(('http://', 'https://')):
+        # 尝试添加 http:// 前缀进行解析
+        parsed = urlparse('http://' + url)
+    else:
+        parsed = urlparse(url)
+
+    # 检查是否存在有效的网络位置 (netloc)
+    if not parsed.netloc:
+        raise ValueError(f"无效的网址格式: '{url}'")
+
+    # 返回域名部分 (netloc)
+    return parsed.netloc
+
 
 
 def open_article_in_browser(article):
