@@ -8,7 +8,7 @@ python结合feedparser模块编写的终端私人RSS订阅程序
 
 ## 截图
 
-![rss](rss.jpg)
+![rss](rss.png)
 
 
 ## 在本地运行
