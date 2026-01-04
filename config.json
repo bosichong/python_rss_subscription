@@ -8,7 +8,8 @@
     "https://hux6.com/feed/",
     "https://atjason.com/atom.xml",
     "https://www.ruanyifeng.com/blog/atom.xml",
-    "https://www.tjsky.net/feed"
+    "https://www.tjsky.net/feed",
+    "https://www.geedea.pro/posts/index.xml"
   ],
   "weeks_limit": 1,
   "max_workers": 5,
