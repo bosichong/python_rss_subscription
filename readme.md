@@ -20,7 +20,7 @@ Python 结合 feedparser 模块编写的 RSS 订阅阅读器，支持终端和 G
 
 ### GUI 界面
 
-![gui](rss.png)
+![gui](gui.png)
 
 ## 在本地运行
 
