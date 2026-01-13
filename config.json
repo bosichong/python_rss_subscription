@@ -10,7 +10,8 @@
     "https://www.tjsky.net/feed",
     "https://www.geedea.pro/posts/index.xml",
     "https://xyzbz.cn/feed/",
-    "https://wiki.eryajf.net/rss.xml"
+    "https://wiki.eryajf.net/rss.xml",
+    "https://suiyan.cc/rss.xml"
   ],
   "weeks_limit": 1,
   "max_workers": 5,
