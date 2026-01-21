@@ -106,6 +106,31 @@ def main():
     # 采集最新文章
     articles = fetcher.fetch_all_articles()
     
+    # 按相对时间降序排序（最新的在前）
+    try:
+        from email.utils import parsedate_to_datetime
+        from datetime import datetime
+        
+        def get_seconds_ago(article):
+            pub = article.get('published', '')
+            if not pub:
+                return float('inf')
+            try:
+                pub_time = parsedate_to_datetime(pub)
+                # 转换为本地时间
+                if hasattr(pub_time, 'tzinfo') and pub_time.tzinfo:
+                    now = datetime.now(pub_time.tzinfo)
+                else:
+                    now = datetime.now()
+                delta = now - pub_time
+                return delta.total_seconds()
+            except:
+                return float('inf')
+        
+        articles.sort(key=get_seconds_ago)
+    except Exception as e:
+        pass  # 排序失败不影响程序运行
+    
     print()
     print_color("-" * 80, Colors.CYAN)
 

@@ -259,4 +259,23 @@ class RSSFetcher:
                 except Exception as e:
                     print(f"处理 {feed_url} 的结果时出错：{str(e)}")
         
+        # 按相对时间降序排序（最新的在前）
+        def get_seconds_ago(article):
+            pub = article.get('published', '')
+            if not pub:
+                return float('inf')
+            try:
+                pub_time = parsedate_to_datetime(pub)
+                # 转换为本地时间
+                if hasattr(pub_time, 'tzinfo') and pub_time.tzinfo:
+                    now = datetime.now(pub_time.tzinfo)
+                else:
+                    now = datetime.now()
+                delta = now - pub_time
+                return delta.total_seconds()
+            except:
+                return float('inf')
+        
+        articles.sort(key=get_seconds_ago)
+        
         return articles

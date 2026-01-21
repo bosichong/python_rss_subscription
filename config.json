@@ -1,8 +1,6 @@
 {
   "rss_feeds": [
-    "https://oba.by/feed",
     "https://hutusi.com/feed.xml",
-    "https://www.demochen.com/atom.xml",
     "https://onojyun.com/feed/",
     "https://hux6.com/feed/",
     "https://atjason.com/atom.xml",
@@ -10,8 +8,9 @@
     "https://www.tjsky.net/feed",
     "https://www.geedea.pro/posts/index.xml",
     "https://xyzbz.cn/feed/",
-    "https://wiki.eryajf.net/rss.xml",
-    "https://suiyan.cc/rss.xml"
+    "https://demochen.com/atom.xml",
+    "https://blog.gudong.site/static/xml/rss.xml",
+    "https://wiki.eryajf.net/rss.xml"
   ],
   "weeks_limit": 1,
   "max_workers": 5,
